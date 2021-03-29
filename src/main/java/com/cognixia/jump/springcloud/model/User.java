@@ -10,7 +10,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -57,7 +56,6 @@ public class User implements Serializable{
 	@Column(nullable = false)
 	private Role role;
 	
-	@OneToMany(mappedBy="restaurant_id")
 	@Transient
 	List<Review> reviews;
     
