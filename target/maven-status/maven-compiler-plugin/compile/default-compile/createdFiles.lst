@@ -1,0 +1,10 @@
+com\cognixia\jump\springcloud\controller\LoginController.class
+com\cognixia\jump\springcloud\service\MyUserDetailsService.class
+com\cognixia\jump\springcloud\config\SecurityConfig.class
+com\cognixia\jump\springcloud\model\User.class
+com\cognixia\jump\springcloud\config\SwaggerConfig.class
+com\cognixia\jump\springcloud\JumpFullStackFinalProjectApplication.class
+com\cognixia\jump\springcloud\model\User$Role.class
+com\cognixia\jump\springcloud\config\CorsConfiguration.class
+com\cognixia\jump\springcloud\repository\UserRepository.class
+com\cognixia\jump\springcloud\service\MyUserDetails.class
