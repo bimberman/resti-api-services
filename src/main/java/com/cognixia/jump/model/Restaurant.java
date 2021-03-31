@@ -34,10 +34,45 @@ public class Restaurant implements Serializable {
 	@Column(name="rating")
 	private Long rating;
 	
+	@Column(name="imageURL")
+	private String imageURL;
+	
 	public Restaurant() {}
+	
+	public Restaurant(String name, String address, String description) {
+		super();
+		this.name = name;
+		this.address = address;
+		this.description = description;
+	}
+	
+	public Restaurant(String name, String address, String description, String imageURL) {
+		super();
+		this.name = name;
+		this.address = address;
+		this.description = description;
+		this.imageURL = imageURL;
+	}
+	
+	public Restaurant(Long id, String name, String address, String description) {
+		super();
+		Id = id;
+		this.name = name;
+		this.address = address;
+		this.description = description;
+	}
+	
+	public Restaurant(Long id, String name, String address, String description, String imageURL) {
+		super();
+		Id = id;
+		this.name = name;
+		this.address = address;
+		this.description = description;
+		this.imageURL = imageURL;
+	}
 
 	public Restaurant(Long id, String name, String address, String description, ArrayList<String> reviews,
-			Long rating) {
+			Long rating, String imageURL) {
 		super();
 		Id = id;
 		this.name = name;
@@ -45,6 +80,7 @@ public class Restaurant implements Serializable {
 		this.description = description;
 		this.reviews = reviews;
 		this.rating = rating;
+		this.imageURL = imageURL;
 	}
 
 	public Long getId() {
@@ -78,7 +114,7 @@ public class Restaurant implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	
 	public List<String> getReviews() {
 		return reviews;
 	}
@@ -93,6 +129,23 @@ public class Restaurant implements Serializable {
 
 	public void setRating(Long rating) {
 		this.rating = rating;
+	}
+	
+	public String getImageURL() {
+		return imageURL;
+	}
+
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
+	}
+	
+	public String toJson() {
+		
+		return "{\"id\" : " + Id
+				+ ", \"name\" : \"" + name + "\""
+				+ ", \"address\" : \"" + address + "\""
+				+ ", \"description\" : \"" + description +
+		"}";
 	}
 
 	@Override

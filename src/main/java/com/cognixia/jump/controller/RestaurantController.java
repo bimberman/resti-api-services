@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,18 +20,21 @@ import com.cognixia.jump.model.Restaurant;
 import com.cognixia.jump.repository.RestaurantRepository;
 
 @RequestMapping("/api")
+@CrossOrigin
 @RestController
 public class RestaurantController {
 	
 	@Autowired
 	RestaurantRepository service;
 	
+	@CrossOrigin
 	@GetMapping("/restaurants")
 	public List<Restaurant> getAllRestaurants() {
 		
 		return service.findAll();
 	}
 	
+	@CrossOrigin
 	@GetMapping("/restaurants/{id}")
 	public Restaurant getRestaurant(@PathVariable long id) {
 		
@@ -43,12 +47,14 @@ public class RestaurantController {
 		return new Restaurant();
 	}
 	
+	@CrossOrigin
 	@PostMapping("/add/restaurant")
-	public void addRestaurant(@RequestBody Restaurant newRestaurant) {
+	public Restaurant addRestaurant(@RequestBody Restaurant newRestaurant) {
 		
-		service.save(newRestaurant);	
+		return service.save(newRestaurant);	
 	}
 	
+	@CrossOrigin
 	@PutMapping("/update/restaurant")
 	public @ResponseBody String updateRestaurant(@RequestBody Restaurant updateRestaurant) {
 		
@@ -64,6 +70,7 @@ public class RestaurantController {
 		
 	}
 	
+	@CrossOrigin
 	@DeleteMapping("/delete/restaurant/{id}")
 	public ResponseEntity<String> deleteRestaurant(@PathVariable long id) {
 		
