@@ -1,6 +1,7 @@
 package com.cognixia.jump.springcloud.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 @Table(name="REVIEW")
@@ -20,7 +25,12 @@ public class Review implements Serializable{
 	// @GeneratedValue --> use to set auto increment for this column
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long restaurant_id;
+	private Long id;
+	
+	@NotBlank
+	private String comment;
+	
+	
 	
 	@Column(name="review")
 	private Long review_id;
@@ -41,92 +51,90 @@ public class Review implements Serializable{
 	private  String reviewRating;
 	
 	
+	@Temporal(TemporalType.DATE)
+	private Date creationDate;
+	
+	@NotNull
+	@Column(name="user_id", columnDefinition = "integer default 0")
+	private Integer userId;
+	
+	@NotBlank
+	private String username;
+	
+	private String userImageUrl;
+	
+	@NotNull
+	@Column(name="restaurant_id", columnDefinition = "integer default 0")
+	private Integer restaurantId;
+
+	@NotNull
+	@Column(columnDefinition = "double default 0")
+	private Double rating;
+
 	public Review() {
-		this(-1L, -1L, "N/A", "N/A", "N/A", "N/A", "N/A");
+		this(-1L, "N/A", "N/A", new Date(), -1, "N/A", -1, 5.0);
 	}
-
-
-	public Review(Long restaurant_id, Long review_id, String restaurantName, String imageURL, String reviewDate,
-			String reviewComment, String reviewRating) {
+	public Review(Long id, @NotBlank String comment, String imageURL, Date creationDate, @NotNull Integer userId,
+			@NotBlank String username, @NotNull Integer restaurantId, @NotNull Double rating) {
 		super();
-		this.restaurant_id = restaurant_id;
-		this.review_id = review_id;
-		this.restaurantName = restaurantName;
+		this.id = id;
+		this.comment = comment;
 		this.imageURL = imageURL;
-		this.reviewDate = reviewDate;
-		this.reviewComment = reviewComment;
-		this.reviewRating = reviewRating;
+		this.creationDate = creationDate;
+		this.userId = userId;
+		this.username = username;
+		this.restaurantId = restaurantId;
+		this.rating = rating;
 	}
-
-
-	public Long getRestaurant_id() {
-		return restaurant_id;
+	
+	public Long getId() {
+		return id;
 	}
-
-
-	public void setRestaurant_id(Long restaurant_id) {
-		this.restaurant_id = restaurant_id;
+	public void setId(Long id) {
+		this.id = id;
 	}
-
-
-	public Long getReview_id() {
-		return review_id;
+	public String getComment() {
+		return comment;
 	}
-
-
-	public void setReview_id(Long review_id) {
-		this.review_id = review_id;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
-
-
-	public String getRestaurantName() {
-		return restaurantName;
-	}
-
-
-	public void setRestaurantName(String restaurantName) {
-		this.restaurantName = restaurantName;
-	}
-
-
 	public String getImageURL() {
 		return imageURL;
 	}
-
-
 	public void setImageURL(String imageURL) {
 		this.imageURL = imageURL;
 	}
-
-
-	public String getReviewDate() {
-		return reviewDate;
+	public Date getCreationDate() {
+		return creationDate;
 	}
-
-
-	public void setReviewDate(String reviewDate) {
-		this.reviewDate = reviewDate;
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
-
-
-	public String getReviewComment() {
-		return reviewComment;
+	public Integer getUserId() {
+		return userId;
 	}
-
-
-	public void setReviewComment(String reviewComment) {
-		this.reviewComment = reviewComment;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
-
-
-	public String getReviewRating() {
-		return reviewRating;
+	public String getUsername() {
+		return username;
 	}
-
-
-	public void setReviewRating(String reviewRating) {
-		this.reviewRating = reviewRating;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-
+	public Integer getRestaurantId() {
+		return restaurantId;
+	}
+	public void setRestaurantId(Integer restaurantId) {
+		this.restaurantId = restaurantId;
+	}
+	public Double getRating() {
+		return rating;
+	}
+	public void setRating(Double rating) {
+		this.rating = rating;
+	}
+		
 	
 }
