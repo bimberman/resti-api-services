@@ -12,6 +12,7 @@ import com.cognixia.jump.springcloud.model.User;
 public interface UserRepository extends JpaRepository<User, Long>{
 	
 	 //List<User> findByUsername(String username);
+         //Optional<User> findByEmail(String email);
 	 
 	 Optional<User> findByUsername(String username);
 } 
